@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GrapecityBlogModelStoreContainer" CdmEntityContainer="GrapecityBlogEntities">
+    <EntitySetMapping Name="blogs">
+      <EntityTypeMapping TypeName="GrapecityBlogModel.blog">
+        <MappingFragment StoreEntitySet="blog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="blogTitle" ColumnName="blogTitle" />
+          <ScalarProperty Name="blogcategory" ColumnName="blogcategory" />
+          <ScalarProperty Name="blogDescription" ColumnName="blogDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="GrapecityBlogModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
