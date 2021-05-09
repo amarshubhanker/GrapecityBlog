@@ -18,22 +18,30 @@ namespace GrapecityBlog.Controllers
         [HttpPost]
         public ActionResult Login(user user)
         {
-            GrapecityBlogEntities gc = new GrapecityBlogEntities();
-            bool isValid = gc.users.Any(x => x.Email == user.Email && x.Password == user.Password );
 
-            if (isValid) {
-
-                var loggedinUser = gc.users.First(u => u.Email == user.Email);
-                FormsAuthentication.SetAuthCookie(loggedinUser.Email, false);
-
-                return RedirectToAction("Index", "Blog");
-
-            }
-            else
+            try
             {
+                GrapecityBlogEntities gc = new GrapecityBlogEntities();
+                bool isValid = gc.users.Any(x => x.Email == user.Email && x.Password == user.Password );
 
-                ModelState.AddModelError("", "Invalid UserName and Password Combination");
-                return View();
+                if (isValid) {
+
+                    var loggedinUser = gc.users.First(u => u.Email == user.Email);
+                    FormsAuthentication.SetAuthCookie(loggedinUser.Email, false);
+
+                    return RedirectToAction("Index", "Blog");
+
+                }
+                else
+                {
+
+                    ModelState.AddModelError("", "Invalid UserName and Password Combination");
+                    return View();
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Blog");
             }
         }
 
@@ -47,23 +55,29 @@ namespace GrapecityBlog.Controllers
         [HttpPost]
         public ActionResult Signup(user user)
         {
-            GrapecityBlogEntities gc = new GrapecityBlogEntities();
-            bool isPresent = gc.users.Any(x => x.Email == user.Email);
+            try { 
+                GrapecityBlogEntities gc = new GrapecityBlogEntities();
+                bool isPresent = gc.users.Any(x => x.Email == user.Email);
 
-            if (!isPresent)
-            {
-                gc.users.Add(user);
+                if (!isPresent)
+                {
+                    gc.users.Add(user);
 
-                gc.SaveChanges();
+                    gc.SaveChanges();
 
-                return RedirectToAction("Login");
+                    return RedirectToAction("Login");
 
-                //
+                    //
+                }
+                else {
+
+                    ViewBag.message = "Email Address Already Present";
+                    return View();
+                }
             }
-            else {
-
-                ViewBag.message = "Email Address Already Present";
-                return View();
+            catch
+            {
+                return RedirectToAction("Index", "Blog");
             }
         }
 
@@ -72,10 +86,17 @@ namespace GrapecityBlog.Controllers
         [Authorize]
         public ActionResult EditProfile(string email)
         {
-            GrapecityBlogEntities gc = new GrapecityBlogEntities();
-            var editBlog = gc.users.First(u => u.Email == email);
+            try
+            {
+                GrapecityBlogEntities gc = new GrapecityBlogEntities();
+                var editBlog = gc.users.First(u => u.Email == email);
 
-            return View(editBlog);
+                return View(editBlog);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Blog");
+            }
         }
 
         // POST: Account/Edit/5

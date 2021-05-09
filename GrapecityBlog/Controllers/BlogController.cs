@@ -12,20 +12,34 @@ namespace GrapecityBlog.Controllers
         // GET: Blog
         public ActionResult Index()
         {
-            GrapecityBlogEntities gc = new GrapecityBlogEntities();
+            try
+            {
+                GrapecityBlogEntities gc = new GrapecityBlogEntities();
 
-            var allBlogs = gc.blogs.ToList();
+                var allBlogs = gc.blogs.ToList();
 
-            return View(allBlogs);
+                return View(allBlogs);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Blog/Details/5
         public ActionResult Details(int id)
         {
-            GrapecityBlogEntities gc = new GrapecityBlogEntities();
-            var blog = gc.blogs.Find(id);
+            try
+            {
+                GrapecityBlogEntities gc = new GrapecityBlogEntities();
+                var blog = gc.blogs.Find(id);
 
-            return View(blog);
+                return View(blog);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Blog/Create
@@ -44,9 +58,8 @@ namespace GrapecityBlog.Controllers
                 GrapecityBlogEntities gc = new GrapecityBlogEntities();
                 gc.blogs.Add(bg);
                 gc.SaveChanges();
-                ViewBag.mesage = "The Blog is saved Successfully";
 
-                return View();
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -57,10 +70,17 @@ namespace GrapecityBlog.Controllers
         // GET: Blog/Edit/5
         public ActionResult Edit(int id)
         {
-            GrapecityBlogEntities gc = new GrapecityBlogEntities();
-            var editBlog = gc.blogs.Find(id);
+            try
+            {
+                GrapecityBlogEntities gc = new GrapecityBlogEntities();
+                var editBlog = gc.blogs.Find(id);
 
-            return View(editBlog);
+                return View(editBlog);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Blog/Edit/5
@@ -88,10 +108,18 @@ namespace GrapecityBlog.Controllers
         // GET: Blog/Delete/5
         public ActionResult Delete(int id)
         {
-            GrapecityBlogEntities gc = new GrapecityBlogEntities();
-            var deleteBlog = gc.blogs.Find(id);
 
-            return View(deleteBlog);
+            try
+            {
+                GrapecityBlogEntities gc = new GrapecityBlogEntities();
+                var deleteBlog = gc.blogs.Find(id);
+
+                return View(deleteBlog);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Blog/Delete/5
