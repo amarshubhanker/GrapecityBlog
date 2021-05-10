@@ -1,0 +1,42 @@
+﻿@model GrapecityBlog.blog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>Title</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blogTitle)
+        </dd>
+
+        <dt>
+            <b>Category</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blogcategory)
+        </dd>
+
+        <dt>
+            <b>Description</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blogDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
