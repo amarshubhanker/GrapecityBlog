@@ -80,3 +80,4 @@ D:\Amar\GrapecityProject\GrapecityBlog\GrapecityBlog\obj\Debug\GrapecityBlog.csp
 D:\Amar\GrapecityProject\GrapecityBlog\GrapecityBlog\obj\Debug\GrapecityBlog.csproj.CopyComplete
 D:\Amar\GrapecityProject\GrapecityBlog\GrapecityBlog\obj\Debug\GrapecityBlog.dll
 D:\Amar\GrapecityProject\GrapecityBlog\GrapecityBlog\obj\Debug\GrapecityBlog.pdb
+D:\Amar\GrapecityProject\GrapecityBlog\GrapecityBlog\obj\Debug\GrapecityBlog.csprojAssemblyReference.cache
